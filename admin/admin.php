@@ -4,13 +4,13 @@ class FCBJC_Admin
 {
     private static $instance;
     private $settings_options;
-    private $lead_controller;
 
     private function __construct()
     {
         wp_register_style('fcbjc_style', plugins_url('/css/style.css', __FILE__));
         wp_enqueue_style('fcbjc_style');
-        $this->lead_controller = FCBJC_Lead_Controller::instance();
+        wp_register_script('fcbjc_script', plugins_url('/js/script.js', __FILE__));
+        wp_enqueue_script('fcbjc_script');
         add_action('admin_menu', array($this, 'fcbjc_plugin_pages'));
         add_action('admin_init', array($this, 'fcbjc_settings_init'));
     }
@@ -33,10 +33,13 @@ class FCBJC_Admin
     public function create_dashboard_page()
     { ?>
         <div>
+            <input id="fcbjc_wp_nonce" type="hidden" value="<?php echo wp_create_nonce('wp_rest') ?>">
+            <input id="fcbjc_host_url" type="hidden" value="<?php echo get_site_url() ?>">
             <h2>Dashboard</h2>
             <h3>Unreaded Leads</h3>
-            <div class="lead_table_container">
-                <table class="lead_table">
+            <div class="fcbjc_lead_table_container">
+                <div id="fcbjc_unreaded_lead_table_error" class="fcbjc_lead_table_error">Ups something was wrong</div>
+                <table id="fcbjc_unreaded_lead_table" class="fcbjc_lead_table fcbjc_loading">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -45,17 +48,12 @@ class FCBJC_Admin
                         <th>Created at</th>
                         <th>Actions</th>
                     </tr>
-                    <?php
-                    $unreaded_leads = $this->lead_controller->db_unreaded();
-                    foreach ($unreaded_leads as $lead) {
-                        $this->lead_record_callback($lead);
-                    }
-                    ?>
                 </table>
             </div>
             <h3>Readed Leads</h3>
-            <div class="lead_table_container">
-                <table class="lead_table">
+            <div class="fcbjc_lead_table_container">
+                <div id="fcbjc_readed_lead_table_error" class="fcbjc_lead_table_error">Ups something was wrong</div>
+                <table id="fcbjc_readed_lead_table" class="fcbjc_lead_table fcbjc_loading">
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -65,26 +63,10 @@ class FCBJC_Admin
                         <th>Readed at</th>
                         <th>Actions</th>
                     </tr>
-                    <?php
-                    $readed_leads = $this->lead_controller->db_readed();
-                    foreach ($readed_leads as $lead) {
-                        $this->lead_readed_record_callback($lead);
-                    }
-                    ?>
                 </table>
             </div>
         </div>
     <?php
-    }
-
-    public function lead_record_callback($lead)
-    {
-        echo "<tr class=\"unreaded\"><td>$lead->id</td><td>$lead->name</td><td>$lead->email</td><td class=\"lead_table_message\">$lead->message</td><td style=\"text-wrap: nowrap;\">$lead->created_at</td><td><button>Readed</button></td></tr>";
-    }
-
-    public function lead_readed_record_callback($lead)
-    {
-        echo "<tr><td>$lead->id</td><td>$lead->name</td><td>$lead->email</td><td class=\"lead_table_message\">$lead->message</td><td style=\"text-wrap: nowrap;\">$lead->created_at</td><td style=\"text-wrap: nowrap;\">$lead->readed_at</td><td><button>Unreaded</button></td></tr>";
     }
 
     public function create_settings_page()

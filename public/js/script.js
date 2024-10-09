@@ -192,7 +192,7 @@ window.onload = () => {
     button_active = null;
   }
 
-  background.addEventListener("click", fcbjc_close_popup);
+  background.addEventListener("click", fcbjc_close_bar);
   open_bar.addEventListener("click", fcbjc_open_bar);
   call_button.addEventListener("click", () => fcbjc_click_bar_button("call"));
   contact_button.addEventListener("click", () =>
