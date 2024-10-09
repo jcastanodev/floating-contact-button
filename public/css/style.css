@@ -1,0 +1,192 @@
+.fcbjc_open_bar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  transition: bottom 0.3s ease-in-out;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column;
+}
+
+.fcbjc_open_bar_description {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  font-size: 9px;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 5px;
+}
+
+.fcbjc_open_bar_button {
+  background-color: black;
+  border-radius: 0.8rem 0.8rem 0 0;
+  color: white;
+  overflow: hidden;
+}
+
+.fcbjc_open_bar_button div {
+  display: flex;
+  cursor: pointer;
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+.fcbjc_open_bar_button div:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.fcbjc_open_bar_button div svg {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fcbjc_bar {
+  position: fixed;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  border-radius: 1.2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  transition: bottom 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.fcbjc_bar_button,
+.fcbjc_close_bar_button {
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  padding: 8px;
+  margin: 0;
+  border-radius: 0;
+  color: white;
+  text-decoration: none;
+}
+
+.fcbjc_bar_button:hover,
+.fcbjc_close_bar_button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.fcbjc_bar_button {
+  transition: background-color 0.3s ease-in-out, margin 0.3s ease-in-out,
+    border-radius 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.fcbjc_bar_button svg {
+  margin: auto 0;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.fcbjc_bar_button_text {
+  white-space: nowrap;
+  max-width: 0;
+  overflow: hidden;
+  font-size: 10px;
+  margin: auto 0;
+  padding: 0;
+  transition: max-width 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.fcbjc_bar_button_text.active {
+  max-width: 200px;
+  padding: 0 5px;
+  transition: max-width 0.8s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.fcbjc_popup {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 25em;
+  background-color: black;
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 1rem;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.fcbjc_lead_container {
+  width: 100vw;
+  padding: 1rem 1rem;
+}
+
+.fcbjc_lead_form {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  row-gap: 0.5rem;
+  width: 100%;
+}
+
+.fcbjc_lead_form h2 {
+  color: white;
+  margin: 0;
+}
+
+.fcbjc_lead_input {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.fcbjc_lead_error {
+  color: red;
+}
+
+.fcbjc_lead_success {
+  margin: 0 auto;
+}
+
+.fcbjc_lead_button {
+  padding: 0.5rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.fcbjc_lead_button_loading {
+  cursor: not-allowed;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.fcbjc_chat_container a {
+  color: white;
+  padding: 1rem 1rem;
+}
+
+.fcbjc_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}

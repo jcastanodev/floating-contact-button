@@ -1,0 +1,17 @@
+.lead_table_container {
+  overflow-x: auto;
+}
+.lead_table {
+  min-width: 600px;
+}
+.lead_table th {
+  text-align: left;
+}
+.lead_table tr {
+  vertical-align: baseline;
+}
+.lead_table_message {
+  display: flex;
+  max-height: 100px;
+  overflow-y: auto;
+}
